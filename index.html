@@ -371,21 +371,21 @@ border:1px solid #ccc;
 
 </style>      
 </head>  <body>  <!-- HEADER -->  <div class="top-marquee">        
-  <img src="logo.png" class="logo">    <div class="marquee-wrapper">        
+  <img src="logo.jpeg" class="logo">    <div class="marquee-wrapper">        
     <div class="marquee-text">        
-      ✨ LUXURY HEAVEN BY ALEESHA ✨ Premium Fashion Store ✨ Quality Fabrics ✨        
+      ✨ LUXURY HEAVEN ✨ Premium Fashion Store ✨ Quality Fabrics ✨        
     </div>        
   </div>    <div class="admin-icon" onclick="openAdmin()">🔒</div>        
 </div>        <!-- CATEGORY -->        <div class="category-bar" id="categoryBar"></div>        <!-- VIEWS -->       <div id="aboutView" class="view active-view">        
   <div class="card">      <!-- TESTIMONIAL -->          <h3 style="text-align:center;">What Our Customers Say 💬</h3>        
 <div class="carousel testimonial-carousel" id="testimonialCarousel"></div>      
 <div class="dots" id="testimonialDots"></div>      
-<hr>      <!-- WELCOME -->      <h2 style="text-align:center;">Welcome to <br> LUXURY HEAVEN BY ALEESHA  👋</h2>        
+<hr>      <!-- WELCOME -->      <h2 style="text-align:center;">Welcome to <br> Luxury Heaven by Aleesha 👋</h2>        
 <p style="text-align:center;">        
   Your trusted destination for premium fabrics, modern fashion styles, and quality textile products across Nigeria.        
 </p>      <hr>      <!-- ABOUT -->      <h3>About Us</h3>        
 <p>        
-  LUXURY HEAVEN is a professional textile brand specializing in high-quality fabrics,        
+  BOB TEXTILE is a professional textile brand specializing in high-quality fabrics,        
   traditional attire, and modern fashion designs. We are committed to delivering        
   durable, stylish, and affordable materials to our customers.        
   <br><br>        
@@ -898,7 +898,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 
 function loadTestimonialAdmin(){
-let list = JSON.parse(localStorage.getItem("testimonials")) || [];
+let list = JSON.parse(localStorage.getItem("TEST_KEY")) || [];
 let box = document.getElementById("testimonialList");
 
 let html = "";
@@ -930,13 +930,11 @@ if(error){
   
 if(result && result.event === "success"){      
   // get current list      
-  let list = JSON.parse(localStorage.getItem("testimonials")) || [];      
-  
-  // add new image      
-  list.push(result.info.secure_url);      
-  
-  // save immediately      
-  localStorage.setItem("testimonials", JSON.stringify(list));      
+  let list = JSON.parse(localStorage.getItem(TEST_KEY)) || [];
+
+list.push(result.info.secure_url);
+
+localStorage.setItem(TEST_KEY, JSON.stringify(list));      
   
   // update global      
   testimonials = list;      
@@ -950,7 +948,7 @@ if(result && result.event === "success"){
 }
 
 function deleteTestimonial(i){
-  let list = JSON.parse(localStorage.getItem("testimonials")) || [];
+  let list = JSON.parse(localStorage.getItem("TEST_KEY")) || [];
   list.splice(i,1);
   localStorage.setItem("testimonials", JSON.stringify(list));
   testimonials = list;
