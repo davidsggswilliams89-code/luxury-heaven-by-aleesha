@@ -945,11 +945,18 @@ localStorage.setItem(TEST_KEY, JSON.stringify(list));
 }
 
 function deleteTestimonial(i){
-  let list = JSON.parse(localStorage.getItem("TEST_KEY")) || [];
-  list.splice(i,1);
-  localStorage.setItem("testimonials", JSON.stringify(list));
+  let list = JSON.parse(localStorage.getItem(TEST_KEY)) || [];
+
+  // remove correct item
+  list.splice(i, 1);
+
+  // save back using correct KEY
+  localStorage.setItem(TEST_KEY, JSON.stringify(list));
+
+  // update global
   testimonials = list;
 
+  // refresh UI
   loadTestimonials();
   loadTestimonialAdmin();
 }
