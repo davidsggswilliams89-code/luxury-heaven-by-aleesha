@@ -896,22 +896,21 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 
 function loadTestimonialAdmin(){
-let list = JSON.parse(localStorage.getItem("TEST_KEY")) || [];
-let box = document.getElementById("testimonialList");
+  let list = JSON.parse(localStorage.getItem(TEST_KEY)) || [];
+  let box = document.getElementById("testimonialList");
 
-let html = "";
+  let html = "";
 
-list.forEach((img,i)=>{
-html += `
-<div class="testimonial-item">
-  <img src="${img}">
-  <div style="flex:1">Testimonial ${i+1}</div>
-  <button class="delete-btn" onclick="deleteTestimonial(${i})">Delete</button>
-</div>`;
-             
-    });
+  list.forEach((img,i)=>{
+    html += `
+    <div class="testimonial-item">
+      <img src="${img}">
+      <div style="flex:1">Testimonial ${i+1}</div>
+      <button class="delete-btn" onclick="deleteTestimonial(${i})">Delete</button>
+    </div>`;
+  });
 
-box.innerHTML = html;
+  box.innerHTML = html;
 }
     
 function uploadTestimonials(){
