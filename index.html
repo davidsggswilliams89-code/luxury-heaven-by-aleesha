@@ -974,7 +974,7 @@ function addProduct(){
     date: Date.now()
   });
 
-  localStorage.setItem("products", JSON.stringify(products));
+  localStorage.setItem(PROD_KEY, JSON.stringify(products));
 
   uploadedImages = [];
   aName.value = "";
