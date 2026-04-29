@@ -906,7 +906,7 @@ function loadTestimonialAdmin(){
     <div class="testimonial-item">
       <img src="${img}">
       <div style="flex:1">Testimonial ${i+1}</div>
-      <button class="delete-btn" onclick="deleteTestimonial(${i})">Delete</button>
+      <button class="delete-btn" onclick="deleteTestimonial('${img}')">Delete</button>
     </div>`;
   });
 
@@ -944,19 +944,15 @@ localStorage.setItem(TEST_KEY, JSON.stringify(list));
 });
 }
 
-function deleteTestimonial(i){
+function deleteTestimonial(img){
   let list = JSON.parse(localStorage.getItem(TEST_KEY)) || [];
 
-  // remove correct item
-  list.splice(i, 1);
+  list = list.filter(item => item !== img);
 
-  // save back using correct KEY
   localStorage.setItem(TEST_KEY, JSON.stringify(list));
 
-  // update global
   testimonials = list;
 
-  // refresh UI
   loadTestimonials();
   loadTestimonialAdmin();
 }
