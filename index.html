@@ -610,7 +610,12 @@ document.body.appendChild(view);
  
 }
 
-let list = products.filter(p => p.category === type);
+type = type.toLowerCase().trim();
+
+let list = products.filter(p => 
+  (p.category || "").toLowerCase().trim() === type
+);
+  
 let html = "";
 
 list.forEach((p,i)=>{
