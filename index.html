@@ -996,6 +996,8 @@ window.loadProducts = async function () {
 
   products = [];
 
+  console.log("PRODUCTS:", products);
+
   querySnapshot.forEach((doc) => {
     let data = doc.data();
 
