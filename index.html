@@ -622,7 +622,7 @@ html += `
   <div class="card">      
     <div class="img-wrap">      
       ${isNew ? '<div class="new-badge">NEW</div>' : ''}      <div class="carousel car${type}${i}">      
-    ${p.images.map(img=>`<img src="${img}">`).join('')}      
+    ${(p.images || []).map(img => `<img src="${img}">`).join('')}      
   </div>      
 </div>      
   
