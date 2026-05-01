@@ -1023,12 +1023,12 @@ window.loadProducts = async function () {
     }
 
     products.push({
-      name: data.name,
-      price: data.price,
-      category: data.category,
-      images: imgs,
-      date: data.date || Date.now()
-    });
+  name: data.name,
+  price: data.price,
+  category: (data.category || "").toLowerCase().trim(),
+  images: imgs,
+  date: data.date || Date.now()
+});
   });
 console.log("Loaded products:", products);   
   // ✅ refresh current view
