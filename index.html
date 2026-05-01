@@ -480,15 +480,7 @@ const CAT_KEY = STORE_ID + "_categories";
 const PROD_KEY = STORE_ID + "_products";
 const TEST_KEY = STORE_ID + "_testimonials";
 
-let categories = [
-  "shadda",
-  "shoes",
-  "abayas",
-  "yard",
-  "bags",
-  "caps",
-  "vail"
-];
+let categories = [];
     
 
 let uploadedImages=[];
@@ -953,9 +945,10 @@ function deleteTestimonial(img){
 
 
   <script type="module">
+<script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
   authDomain: "luxury-heaven-c24df.firebaseapp.com",
