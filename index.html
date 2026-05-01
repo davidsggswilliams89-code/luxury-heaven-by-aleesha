@@ -889,14 +889,16 @@ restoreActiveView();
 fillCats();
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{    
-  loadCategories();    
-  fillCats();    
-  loadTestimonials();    
+document.addEventListener("DOMContentLoaded", async ()=>{      
+  loadCategories();      
+  fillCats();      
+  loadTestimonials();      
 
-  setTimeout(() => {
-    restoreActiveView();   // delay ensures categories exist
-  }, 100);
+  // 🔥 WAIT for Firebase
+  await loadProducts();
+
+  // now show UI
+  restoreActiveView();
 });
 
 function loadTestimonialAdmin(){
@@ -960,14 +962,7 @@ function deleteTestimonial(img){
   loadTestimonials();
   loadTestimonialAdmin();
 }
-    
-
-window.addProduct = async function () {
-  if (uploadedImages.length === 0) {
-    alert("Upload images first");
-    return;
-  }
-
+   
   const product = {
     name: aName.value,
     price: aPrice.value,
@@ -1007,7 +1002,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ✅ LOAD FROM FIREBASE INTO YOUR SYSTEM
-async function loadProducts() {
+window.loadProducts = async function () {
   const querySnapshot = await getDocs(collection(db, "products"));
 
   products = [];
@@ -1015,6 +1010,7 @@ async function loadProducts() {
   querySnapshot.forEach((doc) => {
     let data = doc.data();
 
+ 
     // 🔥 FIX IMAGE FORMAT
     let imgs = [];
     if (data.images && data.images.length > 0) {
@@ -1031,7 +1027,7 @@ async function loadProducts() {
       date: data.date || Date.now()
     });
   });
-
+console.log("Loaded products:", products);   
   // ✅ refresh current view
   let activeBtn = document.querySelector(".category-btn.active");
   if (activeBtn) {
@@ -1065,8 +1061,7 @@ window.addProduct = async function () {
   loadProducts();
 };
 
-// load on start
-loadProducts();
+ loadProducts();   
 </script>
   
 </body>
