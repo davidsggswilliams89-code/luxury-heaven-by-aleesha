@@ -861,14 +861,13 @@ fillCats();
 }
 
 document.addEventListener("DOMContentLoaded", async ()=>{      
-  loadCategories();      
-  fillCats();      
-  loadTestimonials();      
 
-  // 🔥 WAIT for Firebase
+  await loadCategoriesFromFirebase(); // 🔥 FIRST
+  fillCats();
+
   await loadProducts();
-await loadCategoriesFromFirebase();
-  // now show UI
+  loadTestimonials();
+
   restoreActiveView();
 });
 
