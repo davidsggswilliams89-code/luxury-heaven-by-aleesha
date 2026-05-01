@@ -872,7 +872,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 
   // 🔥 WAIT for Firebase
   await loadProducts();
-
+await loadCategoriesFromFirebase();
   // now show UI
   restoreActiveView();
 });
@@ -953,6 +953,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+window.loadCategoriesFromFirebase = async function () {
+  const querySnapshot = await getDocs(collection(db, "categories"));
+
+  categories = [];
+
+  querySnapshot.forEach((doc) => {
+    categories.push(doc.data().name);
+  });
+
+  loadCategories(); // refresh UI
+};
+    
 
 // ✅ LOAD FROM FIREBASE INTO YOUR SYSTEM
 window.loadProducts = async function () {
