@@ -960,12 +960,6 @@ const firebaseConfig = {
 // ✅ THIS WAS MISSING
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
-window.addCategoryToFirebase = async function (name) {
-  await addDoc(collection(db, "categories"), {
-    name: name
-  });
-};
     
 window.loadCategoriesFromFirebase = async function () {
   const querySnapshot = await getDocs(collection(db, "categories"));
