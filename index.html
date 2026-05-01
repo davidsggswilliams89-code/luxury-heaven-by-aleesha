@@ -927,7 +927,8 @@ if(error){
 if(result && result.event === "success"){      
   // get current list      
 
-list.push(result.info.secure_url);
+if (!window.testimonials) window.testimonials = [];
+testimonials.push(result.info.secure_url);
   
   // update global      
   testimonials = list;      
