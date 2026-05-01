@@ -963,34 +963,30 @@ function deleteTestimonial(img){
 }
     
 
-function addProduct(){
-  if(uploadedImages.length === 0){
+window.addProduct = async function () {
+  if (uploadedImages.length === 0) {
     alert("Upload images first");
     return;
   }
 
-  products.unshift({
+  const product = {
     name: aName.value,
     price: aPrice.value,
     category: aCategory.value.toLowerCase(),
     images: [...uploadedImages],
     date: Date.now()
-  });
+  };
 
-  localStorage.setItem(PROD_KEY, JSON.stringify(products));
+  await addDoc(collection(db, "products"), product);
+
+  alert("Saved to Firebase ✅");
 
   uploadedImages = [];
   aName.value = "";
   aPrice.value = "";
 
-  loadDelete();
-
-  // ✅ IMPORTANT: refresh current category view
-  let activeBtn = document.querySelector(".category-btn.active");
-  if(activeBtn){
-    showView(aCategory.value.toLowerCase(), activeBtn);
-  }
-}
+  loadProducts();
+};
 
 </script> 
 
