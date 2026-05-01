@@ -993,6 +993,43 @@ function addProduct(){
 }
 
 </script> 
+
+
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
+    authDomain: "luxury-heaven-c24df.firebaseapp.com",
+    projectId: "luxury-heaven-c24df",
+    storageBucket: "luxury-heaven-c24df.firebasestorage.app",
+    messagingSenderId: "277279766368",
+    appId: "1:277279766368:web:2f5858b54f58d1df629005"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Load products
+  async function loadProducts() {
+    const querySnapshot = await getDocs(collection(db, "products"));
+    let products = [];
+
+    querySnapshot.forEach((doc) => {
+      products.push(doc.data());
+    });
+
+    displayProducts(products);
+  }
+
+  loadProducts();
+</script>
+  
 </body>
 
 </html>      
