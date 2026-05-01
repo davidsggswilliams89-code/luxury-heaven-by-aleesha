@@ -1050,17 +1050,21 @@ window.addProduct = async function () {
     date: Date.now()
   };
 
-  await addDoc(collection(db, "products"), product);
+  try {
+    await addDoc(collection(db, "products"), product);
 
-  alert("Saved to Firebase ✅");
+    alert("Saved successfully ✅");
 
-  uploadedImages = [];
-  aName.value = "";
-  aPrice.value = "";
+    uploadedImages = [];
+    aName.value = "";
+    aPrice.value = "";
 
-  loadProducts();
+    loadProducts();
+  } catch (error) {
+    console.error(error);
+    alert("Failed to save product ❌");
+  }
 };
-
  loadProducts();   
 </script>
   
