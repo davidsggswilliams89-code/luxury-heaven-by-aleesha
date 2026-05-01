@@ -569,11 +569,9 @@ function fillCats(){
   delCat.innerHTML = html;
 }
 
-function deleteCategory(){
-let cat = document.getElementById("catDelete").value;
-
-categories = categories.filter(c=>c!==cat);
-
+async function deleteCategory(){
+  let cat = document.getElementById("catDelete").value;
+  await deleteCategoryFromFirebase(cat);
 }
 
 /* VIEW */
@@ -980,7 +978,24 @@ window.loadCategoriesFromFirebase = async function () {
 
   loadCategories(); // refresh UI
 };
-    
+ window.addCategoryToFirebase = async function (name) {
+  await addDoc(collection(db, "categories"), {
+    name: name
+  });
+};
+
+// 👇 PASTE IT HERE
+window.deleteCategoryFromFirebase = async function (name) {
+  const querySnapshot = await getDocs(collection(db, "categories"));
+
+  querySnapshot.forEach(async (docSnap) => {
+    if (docSnap.data().name === name) {
+      await deleteDoc(doc(db, "categories", docSnap.id));
+    }
+  });
+
+  await loadCategoriesFromFirebase(); // refresh UI
+};   
 
 // ✅ LOAD FROM FIREBASE INTO YOUR SYSTEM
 window.loadProducts = async function () {
