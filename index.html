@@ -862,13 +862,23 @@ fillCats();
 
 document.addEventListener("DOMContentLoaded", async ()=>{      
 
-  await loadCategoriesFromFirebase(); // 🔥 FIRST
+  await loadCategoriesFromFirebase();
   fillCats();
 
   await loadProducts();
+
   loadTestimonials();
 
-  restoreActiveView();
+  // show default category AFTER everything loads
+  let firstCat = categories[0];
+
+  if(firstCat){
+    let btn = [...document.querySelectorAll(".category-btn")]
+      .find(b => b.innerText.toLowerCase() === firstCat);
+
+    if(btn) showView(firstCat, btn);
+  }
+
 });
 
 function loadTestimonialAdmin(){
