@@ -1030,6 +1030,76 @@ function addProduct(){
   loadProducts();
 </script>
 
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
+  authDomain: "luxury-heaven-c24df.firebaseapp.com",
+  projectId: "luxury-heaven-c24df",
+  storageBucket: "luxury-heaven-c24df.firebasestorage.app",
+  messagingSenderId: "277279766368",
+  appId: "1:277279766368:web:2f5858b54f58d1df629005"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// ✅ LOAD FROM FIREBASE INTO YOUR SYSTEM
+async function loadProducts() {
+  const querySnapshot = await getDocs(collection(db, "products"));
+
+  products = []; // overwrite localStorage data
+
+  querySnapshot.forEach((doc) => {
+    let data = doc.data();
+
+    products.push({
+      name: data.name,
+      price: data.price,
+      category: data.category,
+      images: data.images || [data.image], // support both
+      date: data.date || Date.now()
+    });
+  });
+
+  // refresh UI
+  let activeBtn = document.querySelector(".category-btn.active");
+  if (activeBtn) {
+    showView(activeBtn.innerText.toLowerCase(), activeBtn);
+  }
+}
+
+// ✅ SAVE TO FIREBASE
+window.addProduct = async function () {
+  if (uploadedImages.length === 0) {
+    alert("Upload images first");
+    return;
+  }
+
+  const product = {
+    name: aName.value,
+    price: aPrice.value,
+    category: aCategory.value.toLowerCase(),
+    images: [...uploadedImages],
+    date: Date.now()
+  };
+
+  await addDoc(collection(db, "products"), product);
+
+  alert("Saved to Firebase ✅");
+
+  uploadedImages = [];
+  aName.value = "";
+  aPrice.value = "";
+
+  loadProducts();
+};
+
+// load on start
+loadProducts();
+</script>
   
 </body>
 
