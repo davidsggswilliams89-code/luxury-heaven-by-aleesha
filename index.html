@@ -476,12 +476,7 @@ Manufarmu: kawo muku kaya muasu kyau da salo cikin sauƙi da inganci. ✨
   
   <script>     
 const STORE_ID = "luxury"; // CHANGE THIS PER WEBSITE
-const CAT_KEY = STORE_ID + "_categories";
-const PROD_KEY = STORE_ID + "_products";
-const TEST_KEY = STORE_ID + "_testimonials";
-
-let categories = [];
-    
+let categories = [];   
 
 let uploadedImages=[];
 let adminPanel = document.getElementById("adminPanel");
@@ -945,8 +940,6 @@ function deleteTestimonial(img){
 
 
   <script type="module">
-<script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 const firebaseConfig = {
@@ -994,7 +987,20 @@ console.log("Loaded products:", products);
     showView(activeBtn.innerText.toLowerCase(), activeBtn);
   }
 }
+    
+window.loadCategoriesFromFirebase = async function () {
+  const querySnapshot = await getDocs(collection(db, "categories"));
 
+  categories = [];
+
+  querySnapshot.forEach((doc) => {
+    let data = doc.data();
+    categories.push(data.name);
+  });
+
+  loadCategories(); // refresh navbar + dropdowns
+};
+    
 // ✅ SAVE TO FIREBASE
 window.addProduct = async function () {
   if (uploadedImages.length === 0) {
