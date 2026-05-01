@@ -937,8 +937,19 @@ function deleteTestimonial(img){
 
 
   <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import { 
+  getFirestore, 
+  collection, 
+  getDocs, 
+  addDoc, 
+  deleteDoc, 
+  doc 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// 🔥 Your config (this is fine)
 const firebaseConfig = {
   apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
   authDomain: "luxury-heaven-c24df.firebaseapp.com",
@@ -948,6 +959,7 @@ const firebaseConfig = {
   appId: "1:277279766368:web:2f5858b54f58d1df629005"
 };
 
+// ✅ THIS WAS MISSING
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
