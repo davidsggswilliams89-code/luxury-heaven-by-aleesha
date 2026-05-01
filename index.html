@@ -895,7 +895,12 @@ function loadTestimonialAdmin(){
 
   let html = "";
 
-  list.forEach((img,i)=>{
+  if (!testimonials || testimonials.length === 0) {
+    box.innerHTML = "";
+    return;
+  }
+
+  testimonials.forEach((img,i)=>{
     html += `
     <div class="testimonial-item">
       <img src="${img}">
