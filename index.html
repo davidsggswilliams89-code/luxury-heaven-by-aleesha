@@ -495,11 +495,10 @@ function addCategory(){
 
   if(!newCat) return;
 
-  addCategoryToFirebase(newCat); // 🔥 save to Firebase
+  addCategoryToFirebase(newCat);
 
   document.getElementById("newCat").value = "";
 
-  // refresh UI after short delay
   setTimeout(() => {
     loadCategoriesFromFirebase();
   }, 500);
@@ -1062,7 +1061,7 @@ window.addProduct = async function () {
   const product = {
     name: aName.value,
     price: aPrice.value,
-    category: aCategory.value.toLowerCase(),
+    category: aCategory.value.toLowerCase().trim(),
     images: [...uploadedImages],
     date: Date.now()
   };
