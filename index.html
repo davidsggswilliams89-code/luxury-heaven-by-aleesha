@@ -490,7 +490,7 @@ let categories = JSON.parse(localStorage.getItem(CAT_KEY)) || [
   "vail"
 ];
 
-let products = JSON.parse(localStorage.getItem(PROD_KEY)) || [];
+let products = [];
 let testimonials = JSON.parse(localStorage.getItem(TEST_KEY)) || [];    
     
 localStorage.setItem(STORE_ID + "_categories", JSON.stringify(categories));    
@@ -795,7 +795,6 @@ function delProduct(i){
       p.date === productToDelete.date)
   );
 
-  localStorage.setItem(PROD_KEY, JSON.stringify(products));
 
   loadDelete();
   showView(cat, document.querySelector(".category-btn.active"));
@@ -1011,21 +1010,29 @@ const db = getFirestore(app);
 async function loadProducts() {
   const querySnapshot = await getDocs(collection(db, "products"));
 
-  products = []; // overwrite localStorage data
+  products = [];
 
   querySnapshot.forEach((doc) => {
     let data = doc.data();
+
+    // 🔥 FIX IMAGE FORMAT
+    let imgs = [];
+    if (data.images && data.images.length > 0) {
+      imgs = data.images;
+    } else if (data.image) {
+      imgs = [data.image];
+    }
 
     products.push({
       name: data.name,
       price: data.price,
       category: data.category,
-      images: data.images || [data.image], // support both
+      images: imgs,
       date: data.date || Date.now()
     });
   });
 
-  // refresh UI
+  // ✅ refresh current view
   let activeBtn = document.querySelector(".category-btn.active");
   if (activeBtn) {
     showView(activeBtn.innerText.toLowerCase(), activeBtn);
