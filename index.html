@@ -869,13 +869,15 @@ fillCats();
 
 document.addEventListener("DOMContentLoaded", async ()=>{      
 
+  console.log("🔥 loadProducts is running...");
+
   await loadCategoriesFromFirebase();
   fillCats();
 
   await loadProducts();
 
   loadTestimonials();
-
+  
   // show default category AFTER everything loads
   let firstCat = categories[0];
 
