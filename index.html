@@ -1,667 +1,317 @@
 <!DOCTYPE html>
-<html>     
-<head>       
-  <title>LUXURY HEAVEN</title>        
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script> 
-  <style>        
-body{        
-  margin:0;        
-  font-family:Arial;        
-  background:#f5f5f5;        
-  padding-top:80px;        
-}      /* HEADER */  
-.top-marquee{  
-background:#111;  
-position:fixed;  
-top:0;  
-width:100%;  
-height:45px;  
-display:flex;  
-align-items:center;  
-overflow:hidden;  
-z-index:3000;  
-}  /* LOGO */
-.logo{
-height:45px;
-margin:0;
-padding:0;
-object-fit:contain;
-background:#111;
-z-index:10;
+<html>
+<head>
+<title>LUXURY HEAVEN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;padding-top:80px;}
+
+.top-bar{
+position:fixed;top:0;width:100%;height:45px;
+background:#111;color:white;display:flex;
+align-items:center;padding:0 10px;z-index:3000;
 }
 
-/* MOVING TEXT */
-.marquee-wrapper{
-position:absolute;
-width:100%;
-overflow:hidden;
-z-index:1;
-}
+.admin-icon{margin-left:auto;cursor:pointer;}
 
-.marquee-text{
-white-space:nowrap;
-animation:move 12s linear infinite;
-color:white;
-margin-left:120px;
-}
-
-@keyframes move{
-0%{transform:translateX(100%);}
-100%{transform:translateX(-100%);}
-}
-
-.admin{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:white;
-  z-index:5000;
-  padding:10px; /* reduced */
-  overflow:auto;
-  flex-direction:column;
-  align-items:center;
-} 
-    
-/* FIXED COLUMN WIDTH */
-.admin .form-group,
-.admin h3,
-.admin input,
-.admin select,
-.admin .btn{
-width:100%;
-max-width:320px;
-}
-
-.admin input,
-.admin select{
-width:100%;
-max-width:320px;
-padding:8px;
-font-size:14px;
-border-radius:8px;
-margin-bottom:8px;
-}
-
-.admin .btn{
-width:100%;
-max-width:320px;
-padding:8px;
-font-size:13px;
-border-radius:8px;
-margin:6px 0;
-text-align:center;
-}
-
-.admin label{
-display:block;
-text-align:left;
-font-size:13px;
-font-weight:bold;
-margin:10px 0 5px;
-width:100%;
-max-width:320px;
-}
-
-/* ADMIN ICON */
-.admin-icon{
-position:absolute;
-right:0;
-width:45px;
-height:45px;
-background:#222;
-display:flex;
-align-items:center;
-justify-content:center;
-color:white;
-cursor:pointer;
-z-index:10;
-}
-
-/* CATEGORY */
 .category-bar{
-position:fixed;
-top:45px;
-width:100%;
-height:40px;
-background:#222;
-display:flex;
-overflow-x:auto;
-z-index:2000;
+position:fixed;top:45px;width:100%;height:40px;
+background:#222;display:flex;overflow-x:auto;
 }
 
 .category-btn{
-color:white;
-padding:6px 14px;
-margin:5px;
-border-radius:20px;
-white-space:nowrap;
-cursor:pointer;
+color:white;padding:6px 14px;margin:5px;
+border-radius:20px;cursor:pointer;
 }
-
 .category-btn.active{background:#25D366;}
 
 .view{display:none;padding:10px;}
 .active-view{display:block;}
 
-/* CARD */
 .card{
-background:white;
-border-radius:14px;
-padding:10px;
-margin-bottom:15px;
+background:white;border-radius:12px;
+padding:10px;margin:10px 0;
 }
 
 /* IMAGE */
-.img-wrap{
-position:relative;
-overflow:hidden;
-border-radius:12px;
-}
-
-/* NEW BADGE */
-.new-badge{
-position:absolute;
-top:8px;
-left:8px;
-background:red;
-color:white;
-font-size:11px;
-padding:4px 6px;
-border-radius:5px;
-z-index:10;
-}
-
-/* CAROUSEL */
 .carousel{
 display:flex;
 overflow-x:auto;
 scroll-snap-type:x mandatory;
-border-radius:12px;
 }
-
 .carousel img{
 min-width:100%;
-height:380px;
-object-fit:cover;  
-/* fills container properly */
+height:300px;
+object-fit:cover;
 scroll-snap-align:center;
-border-radius:12px; /* smooth rounded look */
+border-radius:10px;
 }
+.carousel::-webkit-scrollbar{display:none}
 
-.social-btn img{
-width:22px;
-height:22px;
-}
-.social-btn{
-display:flex;
-align-items:center;
-gap:6px;
-padding:8px 10px;
-border-radius:20px;
-color:#fff;
+/* NEW BADGE */
+.new-badge{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+padding:5px 8px;
 font-size:12px;
-font-weight:500;
-width:auto;
-white-space:nowrap;
-flex-shrink:0; /* prevents squeezing */
-
+border-radius:6px;
+z-index:10;
+font-weight:bold;
 }
-
-.social-btn img{
-width:18px;
-height:18px;
-object-fit:contain;
-}
-.carousel::-webkit-scrollbar{display:none;}
 
 /* DOTS */
 .dots{text-align:center;margin-top:5px;}
 .dot{
-height:8px;width:8px;
-margin:0 3px;
-background:#bbb;
-border-radius:50%;
-display:inline-block;
+height:8px;width:8px;background:#bbb;
+border-radius:50%;display:inline-block;margin:0 3px;
 }
-.dot.active { background:#25D366; }
+.dot.active{background:#25D366;}
 
-/* PRICE */
 .price{
-background:#111;
-color:white;
-text-align:center;
-padding:10px;
-margin-top:10px;
-border-radius:8px;
+background:#111;color:white;padding:10px;
+text-align:center;border-radius:8px;margin-top:8px;
 }
 
-/* BUY BUTTON FIXED */
+/* BUY BUTTON */
 .buy-btn{
-background:#25D366;
-color:white;
-border:none;
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:12px;
-font-weight:bold;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
+background:#25D366;color:white;
+padding:12px;border:none;width:100%;
+border-radius:12px;margin-top:10px;
+display:flex;align-items:center;
+justify-content:center;gap:8px;font-weight:bold;
 cursor:pointer;
 }
 
-.buy-btn img{
-width:20px;
-height:20px;
-display:block;
+.admin{
+display:none;position:fixed;top:0;left:0;
+width:100%;height:100%;background:white;
+z-index:9999;padding:10px;overflow:auto;
 }
 
+input,select{width:100%;padding:10px;margin:5px 0;}
 
-input,select{
-width:100%;
-padding:10px;
-margin:5px 0;
-}
+.btn{width:100%;padding:10px;background:green;color:white;border:none;margin-top:5px;}
+.del-btn{background:red;color:white;border:none;padding:6px;margin-top:5px;}
+</style>
+</head>
 
-.btn{
-width:100%;
-padding:10px;
-background:green;
-color:white;
-border:none;
-margin-top:5px;
-cursor:pointer;
-}
+<body>
 
-.admin-item{
-display:flex;
-align-items:center;
-gap:10px;
-background:#f2f2f2;
-padding:8px;
-margin:5px 0;
-border-radius:6px;
-}
+<div class="top-bar">
+LUXURY HEAVEN
+<div class="admin-icon" onclick="openAdmin()">🔒</div>
+</div>
 
-.delete-btn{
-background:red;
-color:white;
-border:none;
-padding:6px;
-cursor:pointer;
-}
+<div class="category-bar" id="categoryBar"></div>
 
-.testimonial-carousel{
-display:flex;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
-scroll-behavior:smooth;
-border-radius:12px;
-}
+<!-- ABOUT -->
+<div id="aboutView" class="view active-view">
+<div class="card">
 
-.testimonial-carousel::-webkit-scrollbar{
-display:none;
-}
+<h3 style="text-align:center;">What Our Customers Say 💬</h3>
+<div class="carousel" id="testimonialCarousel"></div>
+<div class="dots" id="testimonialDots"></div>
 
-.testimonial-carousel img{
-min-width:100%;
-height:380px;      /* same as product images */
-object-fit:contain;
-scroll-snap-align:center;
-background:white;
-border-radius:12px;
-}
-.testimonial-item{
-display:flex;
-align-items:center;
-gap:10px;
-background:#f2f2f2;
-padding:8px;
-margin:5px 0;
-border-radius:6px;
-}
-
-.testimonial-item img{
-width:40px;
-height:40px;
-object-fit:cover;
-border-radius:5px;
-}
-.fb{background:#1877F2;}
-.ig{background:#E1306C;}
-.tt{background:#000;}
-.wa{background:#25D366;}
-
-div::-webkit-scrollbar{
-display:none;
-}
-.admin .form-group{
-width:100%;
-max-width:300px;
-margin:10px auto;
-}
-
-.admin .form-group{
-  width:100%;
-  max-width:320px;
-  margin:8px 0;
-}
-
-.admin .form-group label{
-font-size:13px;
-font-weight:bold;
-margin-bottom:4px;
-color:#222;
-}
-
-.admin .form-group input,
-.admin .form-group select{
-width:100%;
-padding:8px;
-font-size:13px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-</style>      
-</head>  <body>  <!-- HEADER -->  <div class="top-marquee">        
-  <img src="logo1.png" class="logo">    <div class="marquee-wrapper">        
-    <div class="marquee-text">        
-      ✨ LUXURY HEAVEN ✨ Premium Fashion Store ✨ Quality Fabrics ✨        
-    </div>        
-  </div>    <div class="admin-icon" onclick="openAdmin()">🔒</div>        
-</div>        <!-- CATEGORY -->        <div class="category-bar" id="categoryBar"></div>        <!-- VIEWS -->       <div id="aboutView" class="view active-view">        
-  <div class="card">      <!-- TESTIMONIAL -->          <h3 style="text-align:center;">What Our Customers Say 💬</h3>        
-<div class="carousel testimonial-carousel" id="testimonialCarousel"></div>      
-<div class="dots" id="testimonialDots"></div>      
-<hr>      <!-- WELCOME -->      <h2 style="text-align:center;">Welcome to <br> Luxury Heaven <br> by Aleesha 👋</h2>        
-<p style="text-align:center;">        
-  “Ke mace mai son kyau da salo? Ga shagonmu na online domin matan Arewa — muna kawo miki sabbin wando, riguna, huluna, sarkoki, takalma da jakunkuna masu inganci. Ki siya ki yi kyau!”        
-</p>      <hr>      <!-- ABOUT -->      <h3>About Us</h3>        
-<p>        
-  Luxury Heaven shagon online ne da aka bude, domin matan gida da ‘yan mata a arewacin Najeriya.
-Muna sayar da kayayyakin mata masu inganci kamar wando, riguna, huluna, sarkoki, takalma da jakunkuna.
-  <br><br>        
-Manufarmu: kawo muku kaya muasu kyau da salo cikin sauƙi da inganci. ✨
-</p>      <hr>     
-    <!-- LOCATIONS -->     
-    <h3>Our Location</h3>      
-    <!-- <p><strong>📍 Kano</strong><br>        
-  • Shop No. 12, Gidan Zeeta, IBB Way, Kantin Kwari Market, Kano<br>        
-  • Muwaffaq House, Isyaka Rabiu Road, Kano </p>  -->
-    <p><strong>📍 Zamfara (Gusau)</strong><br>        
-  • No. 32 Mortgage area near Rabi'a Jumma'at mosque, <br>  Gusau, Zamfara State.</p>
- <!--   <p><strong>📍 Sokoto</strong><br>        
-  • Gidan Yadi, Maiduguri Road, Sokoto<br>        
-  • Central Market, Sokoto        
-</p>      <hr>     -->
-    <!-- CONTACT -->  
-    <h3>Contact & Business Info</h3>        
-<p>        
-  📞 09114738932<br>        
-  🕒 Monday – Saturday (9:00AM – 6:00PM)<br>        
-  🚚 Nationwide delivery available<br>        
-  💬 Fast WhatsApp support      </p>      <hr>     
-  <!-- SOCIAL -->    
-    <h3>Connect With Us</h3>    
-    <div style="      
-  display:flex;      
-  gap:10px;      
-  overflow-x:auto;      
-  padding-bottom:5px;      
-">    <!-- <a href="https://www.facebook.com/share/17RD54HCzq/" target="_blank" style="text-decoration:none;">        
-    <div class="social-btn fb">        
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">        
-      Facebook        
-    </div>   -->   
-<!--  </a>        <a href="https://www.instagram.com/bob__textile/" target="_blank" style="text-decoration:none;">        
-    <div class="social-btn ig">        
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png">        
-      Instagram        
-    </div>    -->    
- <!-- </a>  -->  <!--    <a href="https://www.tiktok.com/@bob__textile" target="_blank" style="text-decoration:none;">        
-    <div class="social-btn tt">        
-      <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">        
-      TikTok        
-    </div>   -->     
-  </a>        <a href="https://wa.me/234911473893" target="_blank" style="text-decoration:none;">        
-    <div class="social-btn wa">        
-      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">        
-      WhatsApp        
-    </div>        
-  </a>      </div>      </div>        
-</div>  <div id="shaddaView" class="view"></div>        
-<div id="shoesView" class="view"></div>        
-<div id="abayasView" class="view"></div>        
-<div id="yardView" class="view"></div>      
-<div id="bagsView" class="view"></div>      
-<div id="capsView" class="view"></div>        
-<div id="vailView" class="view"></div>       
-  <!-- ADMIN -->    
-  <div class="admin" id="adminPanel">     
-    <h3>Admin Panel</h3>     
-    <div class="form-group">  
-  <label>Product Name</label>  
-  <input id="aName" placeholder="Enter product name">  
-</div>  <div class="form-group">  
-  <label>Price</label>  
-  <input id="aPrice" placeholder="Enter price">  
-</div>  <div class="form-group">  
-  <label>Category</label>  
-  <select id="aCategory"></select>  
-</div>  <button class="btn" onclick="uploadImage()">📷 Upload Images</button>
-<button class="btn" onclick="addProduct()">Save Product</button>
-
-  <hr>     
-    <h3>Delete Category</h3>  <div class="form-group">  
-  <label>Select Category</label>  
-  <select id="catDelete"></select>  
-</div>  <button class="btn" onclick="deleteCategory()">Delete Category</button>
 <hr>
-<h3>Delete Product</h3>
-<select id="delCat" onchange="loadDelete()"></select>
 
-  <div id="delList"></div>        <hr>      <h3>Testimonials</h3>        
-  <button class="btn" onclick="uploadTestimonials()">Upload Testimonials</button>        <hr>      <h3>Manage Testimonials</h3>      
-  <div id="testimonialList"></div>      <hr>      <h3>Add Category</h3>      
-  <input id="newCat" placeholder="New category name">      
-  <button class="btn" onclick="addCategory()">Add Category</button>      <hr>    <button class="btn" onclick="closeAdmin()" style="background:red;">Close</button>  </div>     
-  
-  
-  <script>     
-const STORE_ID = "luxury"; // CHANGE THIS PER WEBSITE
-let categories = [];   
+<h2 style="text-align:center;">✨ About Luxury Heaven</h2>
 
-let uploadedImages=[];
-let adminPanel = document.getElementById("adminPanel");
-let delCat = document.getElementById("delCat");
-let delList = document.getElementById("delList");
-let aName = document.getElementById("aName");
-let aPrice = document.getElementById("aPrice");
-let aCategory = document.getElementById("aCategory");
-let aboutView = document.getElementById("aboutView");
+<p style="text-align:center;line-height:1.6;">
+<strong>Luxury Heaven by Aleesha</strong> is your trusted online fashion store
+for premium women’s wear across Nigeria.
+<br><br>
+We specialize in stylish and affordable products such as
+<strong>shoes, bags, abayas, hijabs, and fashion accessories</strong>.
+<br><br>
+Our mission is to make every woman feel confident, elegant, and beautiful
+with high-quality fashion that matches modern trends.
+<br><br>
+We provide fast response, reliable service, and easy ordering through WhatsApp.
+</p>
 
-/* add category */
+<hr>
 
-    
-function addCategory(){
-  let newCat = document.getElementById("newCat").value.trim().toLowerCase();
+<h3>📞 Contact Us</h3>
 
-  if(!newCat) return;
+<p style="line-height:1.8;">
+📱 <strong>Phone / WhatsApp:</strong> 09114738932<br>
+📍 <strong>Location:</strong> Nigeria (Online Store)<br>
+🚚 <strong>Delivery:</strong> Nationwide Available
+</p>
 
-  addCategoryToFirebase(newCat);
+<hr>
 
-  document.getElementById("newCat").value = "";
+<h3>💬 Chat With Us</h3>
 
-  setTimeout(() => {
-    loadCategoriesFromFirebase();
-  }, 500);
-}
-    
-function loadCategories(){
-let bar = document.getElementById("categoryBar");
-let sel = document.getElementById("aCategory");
-let delSel = document.getElementById("catDelete");
+<a href="https://wa.me/2349114738932" target="_blank" style="text-decoration:none;">
+  <button class="buy-btn">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20">
+    Chat on WhatsApp
+  </button>
+</a>
 
-bar.innerHTML = "";
-sel.innerHTML = "";
-delSel.innerHTML = "";
+</div>
+</div>
 
-// ABOUT BUTTON
-let aboutBtn = document.createElement("div");
-aboutBtn.className = "category-btn";
-aboutBtn.innerText = "ABOUT";
-aboutBtn.onclick = function () {
-showView("about", aboutBtn);
+<!-- PRODUCTS -->
+<div id="productView" class="view"></div>
+
+<!-- ADMIN -->
+<div class="admin" id="admin">
+<h3>Admin Panel</h3>
+
+<input id="pname" placeholder="Product name">
+<input id="price" placeholder="Price">
+<select id="category"></select>
+
+<button class="btn" onclick="uploadImages()">Upload Images</button>
+<button class="btn" onclick="saveProduct()">Save Product</button>
+
+<hr>
+
+<h3>Categories</h3>
+<input id="newCat" placeholder="New category">
+<button class="btn" onclick="addCategory()">Add Category</button>
+
+<select id="catDelete"></select>
+<button class="del-btn" onclick="deleteCategory()">Delete Category</button>
+
+<hr>
+
+<h3>Testimonials</h3>
+<button class="btn" onclick="uploadTestimonial()">Upload Testimonial</button>
+<div id="testimonialAdminList"></div>
+
+<hr>
+
+<button class="del-btn" onclick="closeAdmin()">Close</button>
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
+authDomain: "luxury-heaven-c24df.firebaseapp.com",
+projectId: "luxury-heaven-c24df",
+storageBucket: "luxury-heaven-c24df.firebasestorage.app",
+messagingSenderId: "277279766368",
+appId: "1:277279766368:web:2f5858b54f58d1df629005"
 };
-bar.appendChild(aboutBtn);
 
-// LOOP CATEGORIES PROPERLY
-categories.forEach(cat => {
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  // button creation
-  let btn = document.createElement("div");
-  btn.className = "category-btn";
-  btn.innerText = cat.toUpperCase();
+let products=[],categories=[],images=[],active="";
+let testimonials=[],tIndex=0,tAuto;
 
-  btn.onclick = function () {
-    showView(cat, btn);
-  };
+window.openAdmin=()=>admin.style.display="block";
+window.closeAdmin=()=>admin.style.display="none";
 
-  bar.appendChild(btn);
+window.onload=()=>{
+loadCategories();
+loadProducts();
+loadTestimonials();
+};
 
-  // admin select
-  let opt = document.createElement("option");
-  opt.value = cat;
-  opt.textContent = cat.toUpperCase();
-  sel.appendChild(opt);
+async function loadCategories(){
+categories=[];
+let snap=await getDocs(collection(db,"categories"));
+snap.forEach(d=>categories.push(d.data().name));
 
-  // delete select
-  let opt2 = document.createElement("option");
-  opt2.value = cat;
-  opt2.textContent = cat.toUpperCase();
-  delSel.appendChild(opt2);
+categoryBar.innerHTML="";
 
-if (!document.getElementById(cat + "View")) {
-  let div = document.createElement("div");
-  div.id = cat + "View";
-  div.className = "view";
-  document.body.appendChild(div);
+let about=document.createElement("div");
+about.className="category-btn active";
+about.innerText="ABOUT";
+about.onclick=()=>show("about",about);
+categoryBar.appendChild(about);
+
+categories.forEach(c=>{
+let btn=document.createElement("div");
+btn.className="category-btn";
+btn.innerText=c;
+btn.onclick=()=>show(c,btn);
+categoryBar.appendChild(btn);
+});
 }
 
-});
-} 
-
-function fillCats(){
-  let html = categories
-    .map(c => `<option value="${c}">${c.toUpperCase()}</option>`)
-    .join("");
-
-  document.getElementById("aCategory").innerHTML = html;
-  document.getElementById("catDelete").innerHTML = html;
-  delCat.innerHTML = html;
+async function loadProducts(){
+products=[];
+let snap=await getDocs(collection(db,"products"));
+snap.forEach(d=>products.push({id:d.id,...d.data()}));
 }
 
-async function deleteCategory(){
-  let cat = document.getElementById("catDelete").value;
-  await deleteCategoryFromFirebase(cat);
-}
+function show(type,btn){
+document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+active=type;
 
-/* VIEW */
-document.querySelectorAll(".view").forEach(v=>{
-v.classList.remove("active-view");
-});
-
-function showView(type, el){
-// remove active class from all buttons
-document.querySelectorAll(".category-btn").forEach(b=>{
-b.classList.remove("active");
-});
-
-// set active button
-el.classList.add("active");
-
-// HIDE ALL VIEWS FIRST
-document.querySelectorAll(".view").forEach(v=>{
-v.classList.remove("active-view");
-});
-
-// SHOW ABOUT
-if(type === "about"){
+if(type==="about"){
 aboutView.classList.add("active-view");
+productView.classList.remove("active-view");
 return;
 }
 
-// SHOW PRODUCT CATEGORY
-let view = document.getElementById(type + "View");
-
-// ALWAYS ensure view exists
-if(!view){
-view = document.createElement("div");
-view.id = type + "View";
-view.className = "view";
-document.body.appendChild(view);
- 
+aboutView.classList.remove("active-view");
+productView.classList.add("active-view");
+renderProducts();
 }
 
-type = type.toLowerCase().trim();
-
-let list = products.filter(p => 
-  (p.category || "").toLowerCase().trim() === type
-);
-  
-let html = "";
+function renderProducts(){
+productView.innerHTML="";
+let list=products.filter(p=>p.category===active);
 
 list.forEach((p,i)=>{
-let isNew = (Date.now() - p.date) < 86400000;
+let isNew=(Date.now()-p.date)<86400000;
 
-html += `
+productView.innerHTML+=`
+<div class="card">
+<div class="carousel car${i}">
+${isNew ? '<div class="new-badge">NEW</div>' : ''}
+${p.images.map(img=>`<img src="${img}">`).join("")}
+</div>
 
-  <div class="card">      
-    <div class="img-wrap">      
-      ${isNew ? '<div class="new-badge">NEW</div>' : ''}      <div class="carousel car${type}${i}">      
-    ${Array.isArray(p.images) 
-  ? p.images.map(img => `<img src="${img}">`).join('') 
-  : `<img src="${p.images}">`
-}      
-  </div>      
-</div>      
-  
-<div class="dots dots${type}${i}"></div>      
-  
-<div class="price">₦ ${p.price}</div>      
-  
-<button class="buy-btn" onclick="buyNow(${i},'${type}')">      
-  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">      
-  BUY NOW      
+<div class="dots dots${i}"></div>
+
+<div style="text-align:center;font-weight:bold;margin-top:10px;">
+${p.name}
+</div>
+
+<div class="price">₦${p.price}</div>
+
+<button class="buy-btn" onclick="buyNow(${i})">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="18">
+BUY NOW
 </button>
+</div>`;
+});
 
-  </div>`;      
-});      view.innerHTML = html;
-view.classList.add("active-view");
-
-list.forEach((p,i)=>setupCarousel(type,i));
+list.forEach((p,i)=>setupCarousel(i,p));
 }
-/* BUY NOW */
-function buyNow(i,type){
-let list=products.filter(p=>p.category===type);
+
+window.buyNow=(i)=>{
+let list=products.filter(p=>p.category===active);
 let p=list[i];
 
-let car=document.querySelector(".car"+type+i);
+let car=document.querySelector(".car"+i);
 let index=Math.round(car.scrollLeft/car.clientWidth);
-let img=p.images[index];
+let img=p.images[index]||p.images[0];
 
 let msg=`Hello 👋,
 
 I want to order this Product:
 
-🧵 Category: ${type.toUpperCase()}
+🧵 Category: ${p.category}
 🛍️ Product: ${p.name}
 💰 Price: ₦${p.price}
 
@@ -670,425 +320,60 @@ ${img}
 
 Is this available? I want to buy.`;
 
-window.open("https://wa.me/234911473893?text="+encodeURIComponent(msg));
-}
+window.open("https://wa.me/2349114738932?text="+encodeURIComponent(msg));
+};
 
-/* CAROUSEL */
-function setupCarousel(type,i){
-let c=document.querySelector(".car"+type+i);
-let box=document.querySelector(".dots"+type+i);
-if(!c)return;
+function setupCarousel(i,p){
+let car=document.querySelector(".car"+i);
+let dotsBox=document.querySelector(".dots"+i);
 
-let imgs=c.querySelectorAll("img");
-box.innerHTML="";
+dotsBox.innerHTML="";
 
-imgs.forEach((_,x)=>{
+p.images.forEach((_,x)=>{
 let d=document.createElement("span");
-d.className="dot";
-if(x===0)d.classList.add("active");
-box.appendChild(d);
+d.className="dot"+(x===0?" active":"");
+dotsBox.appendChild(d);
 });
 
-let dots=box.querySelectorAll(".dot");
+let dots=dotsBox.querySelectorAll(".dot");
 
-c.addEventListener("scroll",()=>{
-let index=Math.round(c.scrollLeft/c.clientWidth);
+car.addEventListener("scroll",()=>{
+let index=Math.round(car.scrollLeft/car.clientWidth);
 dots.forEach(d=>d.classList.remove("active"));
-if(dots[index])dots[index].classList.add("active");
+if(dots[index]) dots[index].classList.add("active");
 });
 }
 
-/* ADMIN */
-function openAdmin(){
-  if(prompt("Password")==="1234"){
-    adminPanel.style.display="flex"; // show as flex only when opened
-    fillCats();
-    loadTestimonialAdmin();
-  }
+/* TESTIMONIAL */
+async function loadTestimonials(){
+testimonials=[];
+let snap=await getDocs(collection(db,"testimonials"));
+snap.forEach(d=>testimonials.push({id:d.id,image:d.data().image}));
+renderTestimonials();
 }
 
-function closeAdmin(){
-adminPanel.style.display="none";
-}
+function renderTestimonials(){
+testimonialCarousel.innerHTML="";
+testimonialDots.innerHTML="";
 
-/* UPLOAD */
-function uploadImage(){
-  if (typeof cloudinary === "undefined") {
-    alert("Upload tool not loaded. Refresh page.");
-    return;
-  }
-
-  cloudinary.openUploadWidget({
-    cloudName: "db92r6j9z",
-    uploadPreset: "ummuhalti",
-    sources: ["local", "camera"],
-    multiple: true
-  }, (error, result) => {
-
-    if (error) {
-      console.log("Upload error:", error);
-      alert("Upload failed");
-      return;
-    }
-
-    if (result && result.event === "success") {
-      uploadedImages.push(result.info.secure_url);
-
-      // ✅ SHOW FEEDBACK
-      alert("Image uploaded successfully!");
-      console.log("Uploaded:", result.info.secure_url);
-    }
-  });
-} 
-/* DELETE */
-function loadDelete(){
-let cat = delCat.value;
-let html = "";
-
-products.forEach((p,i)=>{
-if(p.category === cat){
-html += `
-<div class="admin-item">
-  <img src="${p.images[0]}" width="40">
-  <div style="flex:1">${p.name}</div>
-  <button class="delete-btn" onclick="delProduct(${i})">Delete</button>
-</div>`;
-}
+testimonials.forEach((t,i)=>{
+testimonialCarousel.innerHTML+=`<img src="${t.image}">`;
+let d=document.createElement("span");
+d.className="dot"+(i===0?" active":"");
+d.onclick=()=>scrollTestimonial(i);
+testimonialDots.appendChild(d);
 });
 
-delList.innerHTML = html;
+scrollTestimonial(0);
 }
 
-function delProduct(i){
-  let cat = delCat.value;
-
-  // get ONLY products in this category
-  let filtered = products.filter(p => p.category === cat);
-
-  // correct item to delete
-  let productToDelete = filtered[i];
-
-  // remove safely using unique match (NOT index)
-  products = products.filter(p =>
-    !(p.category === cat &&
-      p.name === productToDelete.name &&
-      p.price === productToDelete.price &&
-      p.date === productToDelete.date)
-  );
-
-
-  loadDelete();
-  showView(cat, document.querySelector(".category-btn.active"));
-}
-  
-
-// remove item //
-
-let tIndex = 0;
-let tAuto;
-
-/* LOAD */
-function loadTestimonials() {
-const box = document.getElementById("testimonialCarousel");
-const dots = document.getElementById("testimonialDots");
-
-box.innerHTML = "";
-dots.innerHTML = "";
-
-if (testimonials.length === 0) {
-box.innerHTML = `<p style="text-align:center;color:#777;">No testimonials yet</p>`;
-return;
+function scrollTestimonial(i){
+testimonialCarousel.scrollTo({left:testimonialCarousel.clientWidth*i,behavior:"smooth"});
+document.querySelectorAll("#testimonialDots .dot").forEach(d=>d.classList.remove("active"));
+testimonialDots.children[i].classList.add("active");
+tIndex=i;
 }
 
-testimonials.forEach((img, i) => {
-box.innerHTML += `<img src="${img}">`;
-
-let dot = document.createElement("span");      
-dot.className = "dot" + (i === 0 ? " active" : "");      
-dot.onclick = () => scrollTestimonial(i);      
-dots.appendChild(dot);
-
-});
-
-startAuto();
-scrollTestimonial(0); // ✅ IMPORTANT FIX
-}
-
-/* SCROLL */
-function scrollTestimonial(i) {
-const box = document.getElementById("testimonialCarousel");
-const dots = document.querySelectorAll("#testimonialDots .dot");
-
-box.scrollTo({
-left: box.clientWidth * i,
-behavior: "smooth"
-});
-
-dots.forEach(d => d.classList.remove("active"));
-if (dots[i]) dots[i].classList.add("active");
-
-tIndex = i;
-}
-
-/* AUTO SLIDE */
-function startAuto() {
-clearInterval(tAuto);
-
-if (testimonials.length <= 1) return;
-
-tAuto = setInterval(() => {
-tIndex = (tIndex + 1) % testimonials.length;
-scrollTestimonial(tIndex);
-}, 4000);
-}
-
-function restoreActiveView(){
-
-if(saved === "about"){
-document.querySelectorAll(".view").forEach(v=>{
-v.classList.remove("active-view");
-});
-aboutView.classList.add("active-view");
-return;
-}
-
-let buttons = document.querySelectorAll(".category-btn");
-
-buttons.forEach(btn=>{
-if(btn.innerText.toLowerCase() === saved.toLowerCase()){
-showView(saved, btn);
-}
-});
-}
-
-function initApp(){
-loadTestimonials();
-restoreActiveView();
-fillCats();
-}
-
-document.addEventListener("DOMContentLoaded", async ()=>{      
-
-  console.log("🔥 loadProducts is running...");
-
-  await loadCategoriesFromFirebase();
-  fillCats();
-
-  await loadProducts();
-
-  loadTestimonials();
-  
-  // show default category AFTER everything loads
-  let firstCat = categories[0];
-
-  if(firstCat){
-    let btn = [...document.querySelectorAll(".category-btn")]
-      .find(b => b.innerText.toLowerCase() === firstCat);
-
-    if(btn) showView(firstCat, btn);
-  }
-
-});
-
-function loadTestimonialAdmin(){
-  let box = document.getElementById("testimonialList");
-
-  let html = "";
-
-  if (!testimonials || testimonials.length === 0) {
-    box.innerHTML = "";
-    return;
-  }
-
-  testimonials.forEach((img,i)=>{
-    html += `
-    <div class="testimonial-item">
-      <img src="${img}">
-      <div style="flex:1">Testimonial ${i+1}</div>
-      <button class="delete-btn" onclick="deleteTestimonial('${img}')">Delete</button>
-    </div>`;
-  });
-
-  box.innerHTML = html;
-}
-    
-function uploadTestimonials(){
-cloudinary.openUploadWidget({
-cloudName:"db92r6j9z",
-uploadPreset:"ummuhalti",
-multiple:true
-}, (error, result) => {
-
-if(error){      
-  console.log("Upload error:", error);      
-  return;      
-}      
-  
-if(result && result.event === "success"){      
-  // get current list      
-
-if (!window.testimonials) window.testimonials = [];
-testimonials.push(result.info.secure_url);
-  
-  // update global      
-  testimonials = list;      
-  
-  // refresh UI instantly      
-  loadTestimonials();      
-  loadTestimonialAdmin();      
-}
-
-});
-}
-
-function deleteTestimonial(img){
-
-  list = list.filter(item => item !== img);
-
-
-
-  testimonials = list;
-
-  loadTestimonials();
-  loadTestimonialAdmin();
-}
-   
- 
-
-</script> 
-
-
-  <script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import { 
-  getFirestore, 
-  collection, 
-  getDocs, 
-  addDoc, 
-  deleteDoc, 
-  doc 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-// 🔥 Your config (this is fine)
-const firebaseConfig = {
-  apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
-  authDomain: "luxury-heaven-c24df.firebaseapp.com",
-  projectId: "luxury-heaven-c24df",
-  storageBucket: "luxury-heaven-c24df.firebasestorage.app",
-  messagingSenderId: "277279766368",
-  appId: "1:277279766368:web:2f5858b54f58d1df629005"
-};
-
-// ✅ THIS WAS MISSING
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-    
-
- window.addCategoryToFirebase = async function (name) {
-  await addDoc(collection(db, "categories"), {
-    name: name
-  });
-};
-
-// 👇 PASTE IT HERE
-window.deleteCategoryFromFirebase = async function (name) {
-  const querySnapshot = await getDocs(collection(db, "categories"));
-
-  querySnapshot.forEach(async (docSnap) => {
-    if (docSnap.data().name === name) {
-      await deleteDoc(doc(db, "categories", docSnap.id));
-    }
-  });
-
-  await loadCategoriesFromFirebase(); // refresh UI
-};   
-
-// ✅ LOAD FROM FIREBASE INTO YOUR SYSTEM
-window.loadProducts = async function () {
-
-  console.log("🔥 Inside loadProducts()");
-  const querySnapshot = await getDocs(collection(db, "products"));
-
-  products = [];
-
-  console.log("PRODUCTS:", products);
-
-  querySnapshot.forEach((doc) => {
-    let data = doc.data();
-
- 
-    // 🔥 FIX IMAGE FORMAT
-    let imgs = [];
-    if (data.images && data.images.length > 0) {
-      imgs = data.images;
-    } else if (data.image) {
-      imgs = [data.image];
-    }
-
-    products.push({
-  name: data.name,
-  price: data.price,
-  category: (data.category || "").toLowerCase().trim(),
-  images: imgs,
-  date: data.date || Date.now()
-});
-  });
-console.log("Loaded products:", products);   
-  // ✅ refresh current view
-  let activeBtn = document.querySelector(".category-btn.active");
-  if (activeBtn) {
-    showView(activeBtn.innerText.toLowerCase(), activeBtn);
-  }
-}
-    
-window.loadCategoriesFromFirebase = async function () {
-  const querySnapshot = await getDocs(collection(db, "categories"));
-
-  categories = [];
-
-  querySnapshot.forEach((doc) => {
-    let data = doc.data();
-    categories.push(data.name);
-  });
-
-  loadCategories(); // refresh navbar + dropdowns
-};
-    
-// ✅ SAVE TO FIREBASE
-window.addProduct = async function () {
-  if (uploadedImages.length === 0) {
-    alert("Upload images first");
-    return;
-  }
-
-  const product = {
-    name: aName.value,
-    price: aPrice.value,
-    category: aCategory.value.toLowerCase().trim(),
-    images: [...uploadedImages],
-    date: Date.now()
-  };
-
-  try {
-    await addDoc(collection(db, "products"), product);
-
-    alert("Saved successfully ✅");
-
-    uploadedImages = [];
-    aName.value = "";
-    aPrice.value = "";
-
-    loadProducts();
-  } catch (error) {
-    console.error(error);
-    alert("Failed to save product ❌");
-  }
-};
- loadProducts();   
 </script>
-  
 </body>
-
-</html>      
+</html>
