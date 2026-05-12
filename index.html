@@ -1,125 +1,437 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>LUXURY HEAVEN</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
-
-<style>
-body{margin:0;font-family:Arial;background:#f5f5f5;padding-top:80px;}
-
-.top-bar{
-position:fixed;top:0;width:100%;height:45px;
-background:#111;color:white;display:flex;
-align-items:center;padding:0 10px;z-index:3000;
+<html>     
+<head>       
+  <title>LUXUEY HEAVEN</title>        
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script> 
+  <style>        
+body{
+  margin:0;
+  font-family:Arial;
+  background:#cfd4da;
+  padding-top:80px;
+}    
+    
+    /* HEADER */  
+.top-marquee{  
+background:#111;  
+position:fixed;  
+top:0;  
+width:100%;  
+height:45px;  
+display:flex;  
+align-items:center;  
+overflow:hidden;  
+z-index:3000;  
+}  /* LOGO */
+.logo{
+height:45px;
+margin:0;
+padding:0;
+object-fit:contain;
+background:#111;
+z-index:10;
 }
 
-.admin-icon{margin-left:auto;cursor:pointer;}
+/* MOVING TEXT */
+.marquee-wrapper{
+position:absolute;
+width:100%;
+overflow:hidden;
+z-index:1;
+}
 
+.marquee-text{
+white-space:nowrap;
+animation:move 12s linear infinite;
+color:white;
+margin-left:120px;
+}
+
+@keyframes move{
+0%{transform:translateX(100%);}
+100%{transform:translateX(-100%);}
+}
+
+.admin{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:white;
+  z-index:5000;
+  padding:15px 15px 15px 0px;
+  overflow:auto;
+  flex-direction:column;
+  align-items:center;
+}
+    
+/* FIXED COLUMN WIDTH */
+.admin .form-group,
+.admin h3,
+.admin input,
+.admin select,
+.admin .btn{
+width:100%;
+max-width:320px;
+}
+
+.admin .btn{
+width:100%;
+max-width:320px;
+padding:8px;
+font-size:13px;
+border-radius:8px;
+margin:6px 0;
+text-align:center;
+}
+
+.admin input,
+.admin select{
+width:100%;
+max-width:320px;
+padding:8px;
+font-size:14px;
+border-radius:8px;
+margin-bottom:1px;
+}
+
+.admin label{
+display:block;
+text-align:left;
+font-size:13px;
+font-weight:bold;
+margin:1px 0;
+width:100%;
+max-width:320px;
+}
+
+.admin .form-group{
+margin:1px 0;
+}
+
+/* ADMIN ICON */
+.admin-icon{
+position:absolute;
+right:0;
+width:45px;
+height:45px;
+background:#222;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+cursor:pointer;
+z-index:10;
+}
+
+/* CATEGORY */
 .category-bar{
-position:fixed;top:45px;width:100%;height:40px;
-background:#222;display:flex;overflow-x:auto;
+  position:fixed;
+  top:45px;
+  width:100%;
+  height:45px;
+  display:flex;
+  align-items:center;
+  overflow-x:auto;
+  z-index:2000;
+
+  background: linear-gradient(90deg, #1877F2, #0d5bd7);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+    
+.category-btn{
+  color:white;
+  padding:6px 14px;
+  margin:5px;
+  border-radius:18px;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:13px;
+  font-weight:500;
+  transition:0.2s;
 }
 
-.category-btn{
-color:white;padding:6px 14px;margin:5px;
-border-radius:20px;cursor:pointer;
+.category-btn.active{
+  background:white;
+  color:#1877F2;
 }
-.category-btn.active{background:#25D366;}
 
 .view{display:none;padding:10px;}
 .active-view{display:block;}
 
+/* CARD */
 .card{
-background:white;border-radius:12px;
-padding:10px;margin:10px 0;
+background:white;
+border-radius:14px;
+padding:10px;
+margin-bottom:15px;
 }
 
 /* IMAGE */
-.carousel{
-display:flex;
-overflow-x:auto;
-scroll-snap-type:x mandatory;
+.img-wrap{
+position:relative;
+overflow:hidden;
+border-radius:12px;
 }
-.carousel img{
-min-width:100%;
-height:300px;
-object-fit:cover;
-scroll-snap-align:center;
-border-radius:10px;
-}
-.carousel::-webkit-scrollbar{display:none}
 
 /* NEW BADGE */
 .new-badge{
 position:absolute;
-top:10px;
-left:10px;
+top:8px;
+left:8px;
 background:red;
 color:white;
-padding:5px 8px;
-font-size:12px;
-border-radius:6px;
+font-size:11px;
+padding:4px 6px;
+border-radius:5px;
 z-index:10;
-font-weight:bold;
 }
+
+/* CAROUSEL */
+.carousel{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+
+  width:100%;
+  border-radius:12px;
+
+  -webkit-overflow-scrolling:touch;
+}
+
+.carousel::-webkit-scrollbar{
+  display:none;
+}
+
+.carousel img{
+  flex:0 0 100%;
+  width:100%;
+  height:440px;
+
+  object-fit:cover;
+  scroll-snap-align:start;
+  border-radius:12px;
+}
+
+.social-btn img{
+width:22px;
+height:22px;
+}
+.social-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+
+  padding:6px 10px;
+  border-radius:18px;
+
+  color:#fff;
+  font-size:11px;
+  font-weight:500;
+
+  width:fit-content;   /* key fix */
+  max-width:120px;     /* prevents stretching */
+  white-space:nowrap;
+
+  flex-shrink:0;
+}
+
+.social-btn img{
+width:18px;
+height:18px;
+object-fit:contain;
+}
+.carousel::-webkit-scrollbar{display:none;}
 
 /* DOTS */
 .dots{text-align:center;margin-top:5px;}
 .dot{
-height:8px;width:8px;background:#bbb;
-border-radius:50%;display:inline-block;margin:0 3px;
+height:8px;width:8px;
+margin:0 3px;
+background:#bbb;
+border-radius:50%;
+display:inline-block;
 }
-.dot.active{background:#25D366;}
+.dot.active { background:#25D366; }
 
+/* PRICE */
 .price{
-background:#111;color:white;padding:10px;
-text-align:center;border-radius:8px;margin-top:8px;
+background:#111;
+color:white;
+text-align:center;
+padding:10px;
+margin-top:10px;
+border-radius:8px;
 }
 
-/* BUY BUTTON */
+/* BUY BUTTON FIXED */
 .buy-btn{
-background:#25D366;color:white;
-padding:12px;border:none;width:100%;
-border-radius:12px;margin-top:10px;
-display:flex;align-items:center;
-justify-content:center;gap:8px;font-weight:bold;
+background:#25D366;
+color:white;
+border:none;
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:12px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
 cursor:pointer;
 }
 
-.admin{
-display:none;position:fixed;top:0;left:0;
-width:100%;height:100%;background:white;
-z-index:9999;padding:10px;overflow:auto;
+.buy-btn img{
+width:20px;
+height:20px;
+display:block;
 }
 
-input,select{width:100%;padding:10px;margin:5px 0;}
 
-.btn{width:100%;padding:10px;background:green;color:white;border:none;margin-top:5px;}
-.del-btn{background:red;color:white;border:none;padding:6px;margin-top:5px;}
-</style>
-</head>
+input,select{
+width:100%;
+max-width:320px;
+padding:10px;
+margin:5px 0;
+box-sizing:border-box;
+}
 
-<body>
+.btn{
+width:100%;
+padding:10px;
+background:green;
+color:white;
+border:none;
+margin-top:5px;
+cursor:pointer;
+}
 
-<div class="top-bar">
-LUXURY HEAVEN
-<div class="admin-icon" onclick="openAdmin()">🔒</div>
-</div>
+.admin-item{
+display:flex;
+align-items:center;
+gap:10px;
+background:#f2f2f2;
+padding:8px;
+margin:5px 0;
+border-radius:6px;
+}
 
-<div class="category-bar" id="categoryBar"></div>
+.delete-btn{
+background:red;
+color:white;
+border:none;
+padding:6px;
+cursor:pointer;
+}
 
-<!-- ABOUT -->
-<div id="aboutView" class="view active-view">
-<div class="card">
+.testimonial-carousel{
+display:flex;
+overflow-x:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;
+border-radius:12px;
+}
 
-<h3 style="text-align:center;">What Our Customers Say 💬</h3>
-<div class="carousel" id="testimonialCarousel"></div>
-<div class="dots" id="testimonialDots"></div>
+.testimonial-carousel::-webkit-scrollbar{
+display:none;
+}
 
-<hr>
+.testimonial-carousel img{
+min-width:100%;
+height:380px;      /* same as product images */
+object-fit:contain;
+scroll-snap-align:center;
+background:white;
+border-radius:12px;
+}
+.testimonial-item{
+display:flex;
+align-items:center;
+gap:10px;
+background:#f2f2f2;
+padding:8px;
+margin:5px 0;
+border-radius:6px;
+}
 
+.testimonial-item img{
+width:40px;
+height:40px;
+object-fit:cover;
+border-radius:5px;
+}
+.fb{background:#1877F2;}
+.ig{background:#E1306C;}
+.tt{background:#000;}
+.wa{background:#25D366;}
+
+div::-webkit-scrollbar{
+display:none;
+}
+.admin .form-group{
+width:100%;
+max-width:300px;
+margin:10px auto;
+}
+
+.admin .form-group{
+  width:100%;
+  max-width:320px;
+  margin:8px 0;
+}
+
+.admin .form-group label{
+font-size:13px;
+font-weight:bold;
+margin-bottom:4px;
+color:#222;
+}
+
+.admin .form-group input,
+.admin .form-group select{
+width:100%;
+padding:8px;
+font-size:13px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+</style>      
+</head> 
+  <body> 
+ 
+    
+ <!-- HEADER -->  
+ <div class="top-marquee">        
+ <img src="file_0000000088b8724691f27b7dd6c7b12e.png" class="logo">   
+ <div class="marquee-wrapper">   <div class="marquee-text">        
+      ✨ LUXURY HEAVEN BY ALEESHA ✨ Premium Fashion Store ✨ Quality Collections ✨        
+    </div>        
+  </div>    <div class="admin-icon" onclick="openAdmin()">🔒</div>        
+</div>    
+
+ <!-- CATEGORY -->   
+    <div class="category-bar" id="categoryBar"></div>     
+    <!-- VIEWS -->   
+    <div id="aboutView" class="view active-view">        
+  <div class="card">   
+   
+ <!-- TESTIMONIAL -->   
+ <h3 style="text-align:center;">What Our Customers Say 💬</h3>        
+<div class="carousel testimonial-carousel" id="testimonialCarousel"></div>      
+<div class="dots" id="testimonialDots"></div>      
+<hr> 
+    
+ <!-- WELCOME -->   
+ <h2 style="text-align:center;">Welcome to LUXURY HEAVEN BY ALEESHA 👋</h2>        
+ <hr>     
+  <!-- ABOUT -->    
+    <h3>About Us</h3>        
 <h2 style="text-align:center;">✨ About Luxury Heaven</h2>
 
 <p style="text-align:center;line-height:1.6;">
@@ -137,68 +449,95 @@ We provide fast response, reliable service, and easy ordering through WhatsApp.
 
 <hr>
 
-<h3>📞 Contact Us</h3>
+    
+    
+<!-- CONTACT -->   
+<h3>Contact & Business Info</h3>        
+<p>        
+  📞 +2349114738932<br>        
+  🕒 Monday – Saturday (9:00AM – 6:00PM)<br>        
+  🚚 Nationwide delivery available<br>        
+  💬 Fast WhatsApp support        
+</p>      <hr> 
 
-<p style="line-height:1.8;">
-📱 <strong>Phone / WhatsApp:</strong> 09114738932<br>
-📍 <strong>Location:</strong> Nigeria (Online Store)<br>
-🚚 <strong>Delivery:</strong> Nationwide Available
-</p>
 
+    
+ <!-- SOCIAL -->  
+ <h3>Connect With Us</h3>
+  <div style="
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  padding-bottom:5px;
+">   
+    
+    <a href="https://www.facebook.com/share/" target="_blank" style="text-decoration:none;">        
+    <div class="social-btn fb">        
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png">        
+      Facebook        
+    </div>        
+  </a>        <a href="https://wa.me/2349114738932" target="_blank" style="text-decoration:none;">        
+    <div class="social-btn wa">        
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">        
+      WhatsApp        
+    </div>        
+  </a>      </div>      </div>        
+</div>  <div id="shaddaView" class="view"></div>        
+<div id="shoesView" class="view"></div>        
+<div id="abayasView" class="view"></div>        
+<div id="yardView" class="view"></div>      
+<div id="bagsView" class="view"></div>      
+<div id="capsView" class="view"></div>        
+<div id="vailView" class="view"></div>       
+  <!-- ADMIN -->    
+  <div class="admin" id="adminPanel">     
+    <h3>Admin Panel</h3>     
+    <div class="form-group">  
+  <label>Product Name</label>  
+  <input id="aName" placeholder="Enter product name">  
+</div>  <div class="form-group">  
+  <label>Price</label>  
+  <input id="aPrice" placeholder="Enter price">  
+</div>  <div class="form-group">  
+  <label>Category</label>  
+  <select id="aCategory"></select>  
+</div>  <button class="btn" onclick="uploadImage()">📷 Upload Images</button>
+<button class="btn" onclick="addProduct()">Save Product</button>
+
+  <hr>     
+    <h3>Delete Category</h3>  <div class="form-group">  
+  <label>Select Category</label>  
+  <select id="catDelete"></select>  
+</div>  <button class="btn" onclick="deleteCategory()">Delete Category</button>
 <hr>
+<h3>Delete Product</h3>
+<select id="delCat" onchange="loadDelete()"></select>
 
-<h3>💬 Chat With Us</h3>
+  <div id="delList"></div>        <hr>      <h3>Testimonials</h3>        
+  <button class="btn" onclick="uploadTestimonials()">Upload Testimonials</button>        <hr>      <h3>Manage Testimonials</h3>      
+  <div id="testimonialList"></div>      <hr>      <h3>Add Category</h3>      
+  <input id="newCat" placeholder="New category name">      
+  <button class="btn" onclick="addCategory()">Add Category</button>      <hr>    
+    <button class="btn" onclick="logoutAdmin()" style="background:red;">
+Logout
+</button>  </div>     
 
-<a href="https://wa.me/2349114738932" target="_blank" style="text-decoration:none;">
-  <button class="buy-btn">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="20">
-    Chat on WhatsApp
-  </button>
-</a>
 
-</div>
-</div>
-
-<!-- PRODUCTS -->
-<div id="productView" class="view"></div>
-
-<!-- ADMIN -->
-<div class="admin" id="admin">
-<h3>Admin Panel</h3>
-
-<input id="pname" placeholder="Product name">
-<input id="price" placeholder="Price">
-<select id="category"></select>
-
-<button class="btn" onclick="uploadImages()">Upload Images</button>
-<button class="btn" onclick="saveProduct()">Save Product</button>
-
-<hr>
-
-<h3>Categories</h3>
-<input id="newCat" placeholder="New category">
-<button class="btn" onclick="addCategory()">Add Category</button>
-
-<select id="catDelete"></select>
-<button class="del-btn" onclick="deleteCategory()">Delete Category</button>
-
-<hr>
-
-<h3>Testimonials</h3>
-<button class="btn" onclick="uploadTestimonial()">Upload Testimonial</button>
-<div id="testimonialAdminList"></div>
-
-<hr>
-
-<button class="del-btn" onclick="closeAdmin()">Close</button>
-</div>
 
 <script type="module">
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc } 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+  
+// YOUR FIREBASE CONFIG TO BE CHANGING FOR EVERY WEBSITE
 const firebaseConfig = {
 apiKey: "AIzaSyD40daowTCCVrKr1kWI6krf9nB7OHp8mWU",
 authDomain: "luxury-heaven-c24df.firebaseapp.com",
@@ -210,170 +549,700 @@ appId: "1:277279766368:web:2f5858b54f58d1df629005"
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
-let products=[],categories=[],images=[],active="";
-let testimonials=[],tIndex=0,tAuto;
+window.auth = auth;
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+window.signOut = signOut;
 
-window.openAdmin=()=>admin.style.display="block";
-window.closeAdmin=()=>admin.style.display="none";
+// MAKE GLOBAL
+window.db = db;
+window.fb = { collection, addDoc, getDocs, deleteDoc, doc };
+</script>
 
-window.onload=()=>{
-loadCategories();
-loadProducts();
-loadTestimonials();
-};
 
-async function loadCategories(){
-categories=[];
-let snap=await getDocs(collection(db,"categories"));
-snap.forEach(d=>categories.push(d.data().name));
+    
+    
+ <script>   
+// Done
+let categories = [];
+let products = [];
+let uploadedImages = [];
 
-categoryBar.innerHTML="";
+let adminPanel, delCat, delList, aName, aPrice, aCategory, aboutView;
 
-let about=document.createElement("div");
-about.className="category-btn active";
-about.innerText="ABOUT";
-about.onclick=()=>show("about",about);
-categoryBar.appendChild(about);
+document.addEventListener("DOMContentLoaded", () => {
+  adminPanel = document.getElementById("adminPanel");
+  delCat = document.getElementById("delCat");
+  delList = document.getElementById("delList");
+  aName = document.getElementById("aName");
+  aPrice = document.getElementById("aPrice");
+  aCategory = document.getElementById("aCategory");
+  aboutView = document.getElementById("aboutView");
 
-categories.forEach(c=>{
-let btn=document.createElement("div");
-btn.className="category-btn";
-btn.innerText=c;
-btn.onclick=()=>show(c,btn);
-categoryBar.appendChild(btn);
-});
-}
-
-async function loadProducts(){
-products=[];
-let snap=await getDocs(collection(db,"products"));
-snap.forEach(d=>products.push({id:d.id,...d.data()}));
-}
-
-function show(type,btn){
-document.querySelectorAll(".category-btn").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-active=type;
-
-if(type==="about"){
-aboutView.classList.add("active-view");
-productView.classList.remove("active-view");
-return;
-}
-
-aboutView.classList.remove("active-view");
-productView.classList.add("active-view");
-renderProducts();
-}
-
-function renderProducts(){
-productView.innerHTML="";
-let list=products.filter(p=>p.category===active);
-
-list.forEach((p,i)=>{
-let isNew=(Date.now()-p.date)<86400000;
-
-productView.innerHTML+=`
-<div class="card">
-<div class="carousel car${i}">
-${isNew ? '<div class="new-badge">NEW</div>' : ''}
-${p.images.map(img=>`<img src="${img}">`).join("")}
-</div>
-
-<div class="dots dots${i}"></div>
-
-<div style="text-align:center;font-weight:bold;margin-top:10px;">
-${p.name}
-</div>
-
-<div class="price">₦${p.price}</div>
-
-<button class="buy-btn" onclick="buyNow(${i})">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="18">
-BUY NOW
-</button>
-</div>`;
+  loadCategoriesFromFirebase();
+  loadProductsFromFirebase();
+  loadTestimonialsFromFirebase();
 });
 
-list.forEach((p,i)=>setupCarousel(i,p));
+   
+/* add category */
+  // Done 
+async function addCategory(){
+  let newCat = document.getElementById("newCat").value.trim().toLowerCase();
+
+  if(!newCat) return;
+
+  await fb.addDoc(fb.collection(db, "categories"), {
+    name: newCat
+  });
+
+  document.getElementById("newCat").value = "";
+
+  loadCategoriesFromFirebase();
 }
 
-window.buyNow=(i)=>{
-let list=products.filter(p=>p.category===active);
-let p=list[i];
+   
+// LOAD CATEGORIES 
+   // Dome
+async function loadCategoriesFromFirebase(){
+  categories = [];
 
-let car=document.querySelector(".car"+i);
-let index=Math.round(car.scrollLeft/car.clientWidth);
-let img=p.images[index]||p.images[0];
+  const snap = await fb.getDocs(fb.collection(db, "categories"));
 
-let msg=`Hello 👋,
+  snap.forEach(docItem=>{
+    categories.push({
+      id: docItem.id,
+      name: docItem.data().name
+    });
+  });
+
+  // convert to simple array for your system
+  categories = categories.map(c => c.name);
+
+  loadCategories();
+  fillCats();
+}
+
+ //Done  
+function fillCats(){
+
+let html = categories
+.map(c => `<option value="${c}">${c.toUpperCase()}</option>`)
+.join("");
+
+delCat.innerHTML = html;
+
+document.getElementById("catDelete").innerHTML = html;
+
+// ADD THIS
+aCategory.innerHTML = html;
+
+}
+   
+// Done   
+async function deleteCategory(){
+  let cat = document.getElementById("catDelete").value;
+
+  const snap = await fb.getDocs(fb.collection(db, "categories"));
+
+  snap.forEach(async (d)=>{
+    if(d.data().name === cat){
+      await fb.deleteDoc(fb.doc(db, "categories", d.id));
+    }
+  });
+
+  loadCategoriesFromFirebase();
+}
+   
+/* VIEW */
+//Done
+document.querySelectorAll(".view")?.forEach(v=>{
+  v.classList.remove("active-view");
+});
+
+ // DONE
+function showView(type, el){
+
+  document.querySelectorAll(".category-btn").forEach(b=>{
+    b.classList.remove("active");
+  });
+
+  if(el) el.classList.add("active");
+
+  localStorage.setItem("activeView", type);
+
+  document.querySelectorAll(".view").forEach(v=>{
+    v.classList.remove("active-view");
+  });
+
+  if(type === "about"){
+    aboutView.classList.add("active-view");
+    return;
+  }
+
+  let view = document.getElementById(type + "View");
+
+  if(!view){
+    view = document.createElement("div");
+    view.id = type + "View";
+    view.className = "view";
+    document.body.appendChild(view);
+  }
+
+  let list = products.filter(p => p.category === type);
+
+  let html = "";
+
+  list.forEach((p,i)=>{
+
+let diff = Date.now() - p.date;
+
+let timeText = "";
+
+let mins = Math.floor(diff / 60000);
+let hours = Math.floor(diff / 3600000);
+let days = Math.floor(diff / 86400000);
+
+if(mins < 60){
+  timeText = mins + " min ago";
+}
+else if(hours < 24){
+  timeText = hours + " hr ago";
+}
+else{
+  timeText = days + " day ago";
+}
+
+let images = (p.images || []).map(img => `<img src="${img}">`).join("");
+
+html += `
+      <div class="card">
+        <div class="img-wrap">
+
+  <div class="new-badge">${timeText}</div>
+
+  <div class="carousel car${type}${i}">
+    ${images}
+  </div>
+
+</div>
+
+        <div class="dots dots${type}${i}"></div>
+
+        <div class="price">₦ ${p.price}</div>
+
+        <button class="buy-btn" onclick="buyNow(${i},'${type}')">
+          BUY NOW
+        </button>
+      </div>
+    `;
+  });
+
+  view.innerHTML = html;
+  view.classList.add("active-view");
+
+  list.forEach((p,i)=>setupCarousel(type,i));
+}
+// DONE
+/* BUY NOW */
+function buyNow(i, type){
+  // get product safely
+  const list = products.filter(p => p.category === type);
+  const p = list[i];
+  if (!p) return;
+
+  // get carousel (may not exist)
+  const car = document.querySelector(".car" + type + i);
+
+  // safe index calculation
+  let index = 0;
+  if (car && car.clientWidth > 0) {
+    index = Math.round(car.scrollLeft / car.clientWidth);
+  }
+
+  // safe image selection
+  const images = Array.isArray(p.images) ? p.images : [];
+  const img = images[index] || images[0] || "No image";
+
+  // build message
+  const msg = `Hello 👋,
 
 I want to order this Product:
 
-🧵 Category: ${p.category}
-🛍️ Product: ${p.name}
-💰 Price: ₦${p.price}
+🧵 Category: ${type.toUpperCase()}
+🛍️ Product: ${p.name || "N/A"}
+💰 Price: ₦${p.price || "N/A"}
 
 🖼️ Selected Image:
 ${img}
 
 Is this available? I want to buy.`;
 
-window.open("https://wa.me/2349114738932?text="+encodeURIComponent(msg));
+  // open WhatsApp
+  window.open(
+    "https://wa.me/2349114738932?text=" + encodeURIComponent(msg),
+    "_blank"
+  );
+}
+   
+// DONE
+/* CAROUSEL */
+function setupCarousel(type,i){
+let c = document.querySelector(".car"+type+i);
+let box = document.querySelector(".dots"+type+i);
+
+if(!c || !box) return; // ✅ prevent crash
+
+let imgs = c.querySelectorAll("img");
+box.innerHTML = "";
+
+// create dots
+imgs.forEach((_,x)=>{
+  let d = document.createElement("span");
+  d.className = "dot";
+  if(x===0) d.classList.add("active");
+  box.appendChild(d);
+});
+
+let dots = box.querySelectorAll(".dot");
+
+// ✅ prevent multiple listeners
+c.onscroll = () => {
+  if(c.clientWidth === 0) return;
+
+  let index = Math.round(c.scrollLeft / c.clientWidth);
+
+  dots.forEach(d=>d.classList.remove("active"));
+  if(dots[index]) dots[index].classList.add("active");
 };
+}
 
-function setupCarousel(i,p){
-let car=document.querySelector(".car"+i);
-let dotsBox=document.querySelector(".dots"+i);
+// DONE
+/* ADMIN */
+   
+async function openAdmin(){
 
-dotsBox.innerHTML="";
+  let email = prompt("Enter admin email");
+  if(!email) return;
 
-p.images.forEach((_,x)=>{
-let d=document.createElement("span");
-d.className="dot"+(x===0?" active":"");
-dotsBox.appendChild(d);
+  let password = prompt("Enter admin password");
+  if(!password) return;
+
+  try{
+
+    await signInWithEmailAndPassword(auth, email, password);
+
+    adminPanel.style.display = "flex";
+
+    fillCats();
+
+    loadTestimonialAdmin();
+
+    alert("Admin login successful ✅");
+
+  }catch(err){
+
+    alert("Access denied ❌");
+
+    console.log(err);
+
+  }
+}
+
+async function logoutAdmin(){
+
+  await signOut(auth);
+
+  adminPanel.style.display = "none";
+
+  alert("Logged out");
+
+}   
+
+// Done   
+/* UPLOAD */
+function uploadImage(){
+  if (typeof cloudinary === "undefined") {
+    alert("Upload tool not loaded. Refresh page.");
+    return;
+  }
+
+  // ✅ clear previous images (optional but recommended)
+  uploadedImages = [];
+
+  alert("Opening upload...");
+
+  cloudinary.openUploadWidget({
+    cloudName: "db92r6j9z",
+    uploadPreset: "ummuhalti",
+    sources: ["local", "camera"],
+    multiple: true
+  }, (error, result) => {
+
+    if (error) {
+      console.log("Upload error:", error);
+      alert("Upload failed");
+      return;
+    }
+
+    if (result && result.event === "success") {
+      uploadedImages.push(result.info.secure_url);
+      console.log("Uploaded:", result.info.secure_url);
+    }
+
+    // ✅ show ONE message when upload closes
+    if (result && result.event === "close") {
+      if(uploadedImages.length > 0){
+        alert(uploadedImages.length + " image(s) uploaded successfully!");
+      }
+    }
+
+  });
+}
+   
+/* SAVE */
+// DONE
+   
+function loadCategories(){
+
+  let bar = document.getElementById("categoryBar");
+
+  if(!bar) return;
+
+  // ABOUT BUTTON FIRST
+  let html = `
+    <div class="category-btn active"
+         onclick="showView('about', this)">
+      HOME
+    </div>
+  `;
+
+  // PRODUCT CATEGORIES
+  categories.forEach(c => {
+    html += `
+      <div class="category-btn"
+           onclick="showView('${c}', this)">
+        ${c.toUpperCase()}
+      </div>
+    `;
+  });
+
+  bar.innerHTML = html;
+}
+
+   
+// DONE   
+/* DELETE */
+function loadDelete(){
+let cat = delCat.value;
+let html = "";
+
+// filter first
+let filtered = products.filter(p => p.category === cat);
+
+filtered.forEach((p,i)=>{
+
+let img = (p.images && p.images.length > 0) ? p.images[0] : "";
+
+html += `
+<div class="admin-item">
+  <img src="${img}" width="40">
+  <div style="flex:1">${p.name || "No name"}</div>
+  <button class="delete-btn" onclick="delProduct(${i})">Delete</button>
+</div>`;
 });
 
-let dots=dotsBox.querySelectorAll(".dot");
+if(delList) delList.innerHTML = html;
+}
 
-car.addEventListener("scroll",()=>{
-let index=Math.round(car.scrollLeft/car.clientWidth);
-dots.forEach(d=>d.classList.remove("active"));
-if(dots[index]) dots[index].classList.add("active");
+// DONE
+async function delProduct(i){
+  let cat = delCat.value;
+
+  let filtered = products.filter(p => p.category === cat);
+  let productToDelete = filtered[i];
+
+  await fb.deleteDoc(fb.doc(db, "products", productToDelete.id));
+
+  loadProductsFromFirebase();
+}
+
+
+// DONE  
+async function deleteTestimonial(i){
+  let item = testimonials[i];
+
+  const snap = await fb.getDocs(fb.collection(db, "testimonials"));
+
+  snap.forEach(async (d)=>{
+    if(d.data().url === item){
+      await fb.deleteDoc(fb.doc(db, "testimonials", d.id));
+    }
+  });
+
+  loadTestimonialsFromFirebase();
+  loadTestimonialAdmin();
+}
+
+ // DONE  
+function del(i){
+let cat = delCat.value;
+
+let filtered = products.filter(p => p.category === cat);
+let productToDelete = filtered[i];
+
+if(!productToDelete) return; // ✅ safety
+
+products = products.filter(p => p !== productToDelete);
+
+localStorage.setItem("products", JSON.stringify(products));
+
+loadDelete();
+}  
+
+let testimonials = [];
+let tIndex = 0;
+let tAuto = null;
+
+// DONE   
+/* LOAD */
+async function loadTestimonialsFromFirebase(){
+  testimonials = [];
+
+  const snap = await fb.getDocs(fb.collection(db, "testimonials"));
+
+  snap.forEach(docItem=>{
+    testimonials.push({
+      id: docItem.id,
+      url: docItem.data().url
+    });
+  });
+
+  // convert to simple array
+  testimonials = testimonials.map(t => t.url);
+
+  loadTestimonials();
+}
+
+function loadTestimonials(){
+
+  let box = document.getElementById("testimonialCarousel");
+  let dots = document.getElementById("testimonialDots");
+
+  if(!box || !dots) return;
+
+  // CREATE IMAGES
+  box.innerHTML = testimonials.map(img => `
+    <img src="${img}">
+  `).join("");
+
+  // CREATE DOTS
+  dots.innerHTML = testimonials.map((_,i)=>`
+    <span class="dot ${i===0 ? 'active' : ''}"
+          onclick="scrollTestimonial(${i})">
+    </span>
+  `).join("");
+
+  // RESET INDEX
+  tIndex = 0;
+
+  // START AUTO SLIDE
+  startAuto();
+}
+
+/* SCROLL */
+// DONE
+function scrollTestimonial(i) {
+const box = document.getElementById("testimonialCarousel");
+const dots = document.querySelectorAll("#testimonialDots .dot");
+
+if(!box) return; // ✅ safety
+
+// clamp index within range
+if(i < 0) i = 0;
+if(i >= dots.length) i = dots.length - 1;
+
+// prevent divide/scroll issues
+if(box.clientWidth === 0) return;
+
+box.scrollTo({
+  left: box.clientWidth * i,
+  behavior: "smooth"
+});
+
+// update dots
+dots.forEach(d => d.classList.remove("active"));
+if (dots[i]) dots[i].classList.add("active");
+
+// update index
+tIndex = i;
+}
+   
+// DONE
+/* AUTO SLIDE */
+function startAuto() {
+clearInterval(tAuto);
+
+// safety check
+if (!Array.isArray(testimonials) || testimonials.length <= 1) return;
+
+tAuto = setInterval(() => {
+
+  // ensure index stays valid
+  tIndex = (tIndex + 1) % testimonials.length;
+
+  // safe call
+  if (typeof scrollTestimonial === "function") {
+    scrollTestimonial(tIndex);
+  }
+
+}, 4000);
+}
+   
+// DONE. 
+function restoreActiveView(){
+
+  let saved = localStorage.getItem("activeView") || "about";
+
+  // REMOVE ACTIVE FROM ALL BUTTONS
+  document.querySelectorAll(".category-btn").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  // HIDE ALL VIEWS
+  document.querySelectorAll(".view").forEach(v=>{
+    v.classList.remove("active-view");
+  });
+
+  // HOME / ABOUT DEFAULT
+  if(saved === "about"){
+
+    aboutView.classList.add("active-view");
+
+    let homeBtn = document.querySelector(".category-btn");
+
+    if(homeBtn){
+      homeBtn.classList.add("active");
+    }
+
+    return;
+  }
+
+  // OTHER CATEGORIES
+  let buttons = document.querySelectorAll(".category-btn");
+
+  buttons.forEach(btn=>{
+
+    if(btn.innerText.trim().toLowerCase() === saved){
+
+      showView(saved, btn);
+
+    }
+
+  });
+
+}
+
+   
+// Done
+  function initApp(){
+  loadCategoriesFromFirebase();
+  loadProductsFromFirebase();
+  loadTestimonialsFromFirebase();
+
+  setTimeout(()=>{
+    loadCategories();
+    restoreActiveView();
+  }, 200);
+} // ✅ CLOSE FUNCTION PROPERLY
+
+
+ // DONE  
+async function loadProductsFromFirebase(){
+  products = [];
+
+  const querySnapshot = await fb.getDocs(fb.collection(db, "products"));
+
+  querySnapshot.forEach((docItem) => {
+    products.push({
+      id: docItem.id,
+      ...docItem.data()
+    });
+  });
+
+  // NEWEST FIRST
+  products.sort((a,b)=> b.date - a.date);
+
+  restoreActiveView();
+}
+   
+
+function loadTestimonialAdmin(){
+let box = document.getElementById("testimonialList");
+
+let html = "";
+
+testimonials.forEach((img,i)=>{
+html += `
+<div class="testimonial-item">
+  <img src="${img}">
+  <div style="flex:1">Testimonial ${i+1}</div>
+  <button class="delete-btn" onclick="deleteTestimonial(${i})">Delete</button>
+</div>`;
+});
+
+box.innerHTML = html;
+}
+    
+function uploadTestimonials(){
+alert("Uploading testimonial...");
+cloudinary.openUploadWidget({
+cloudName:"db92r6j9z",
+uploadPreset:"ummuhalti",
+multiple:true
+}, async (error, result) => {
+
+if(error) return;
+
+if(result && result.event === "success"){
+
+  await fb.addDoc(fb.collection(db, "testimonials"), {
+    url: result.info.secure_url
+  });
+
+  loadTestimonialsFromFirebase();
+  loadTestimonialAdmin();
+}
+
 });
 }
+async function addProduct(){
+  if(uploadedImages.length === 0){
+    alert("Upload images first");
+    return;
+  }
 
-/* TESTIMONIAL */
-async function loadTestimonials(){
-testimonials=[];
-let snap=await getDocs(collection(db,"testimonials"));
-snap.forEach(d=>testimonials.push({id:d.id,image:d.data().image}));
-renderTestimonials();
+  let newProduct = {
+    name: aName.value,
+    price: aPrice.value,
+    category: aCategory.value.toLowerCase(),
+    images: [...uploadedImages],
+    date: Date.now()
+  };
+
+  await fb.addDoc(fb.collection(db, "products"), newProduct);
+
+  uploadedImages = [];
+  aName.value = "";
+  aPrice.value = "";
+
+  alert("Product saved globally ✅");
+
+  loadProductsFromFirebase();
 }
 
-function renderTestimonials(){
-testimonialCarousel.innerHTML="";
-testimonialDots.innerHTML="";
-
-testimonials.forEach((t,i)=>{
-testimonialCarousel.innerHTML+=`<img src="${t.image}">`;
-let d=document.createElement("span");
-d.className="dot"+(i===0?" active":"");
-d.onclick=()=>scrollTestimonial(i);
-testimonialDots.appendChild(d);
-});
-
-scrollTestimonial(0);
-}
-
-function scrollTestimonial(i){
-testimonialCarousel.scrollTo({left:testimonialCarousel.clientWidth*i,behavior:"smooth"});
-document.querySelectorAll("#testimonialDots .dot").forEach(d=>d.classList.remove("active"));
-testimonialDots.children[i].classList.add("active");
-tIndex=i;
-}
-
-</script>
+</script> 
 </body>
-</html>
+
+</html>      
